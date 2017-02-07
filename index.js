@@ -18,16 +18,24 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   let text = req.body.text;
   console.log(text);
+  let data;
   
   if (text == 'frosh') {
-    let data = {
+    data = {
       response_type: 'in_channel', // public to channel
       text: 'look at ' + text,
       attachments: [
         {
           'image_url': 'http://9c0b4c7c.ngrok.io/images/frosh.JPEG',
         }
-    ]};
-    res.json(data);
+      ]
+    };
+  } else {
+    data = {
+      response_type: 'in_channel',
+      text: 'sorry bromigo, no pics yet',
+    };
   }
+
+  res.json(data);
 });
