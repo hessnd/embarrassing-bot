@@ -11,6 +11,10 @@ const server = app.listen(3000, () => {
 
 app.use(express.static('public'));
 
+app.get('/', (req, res) => {
+  res.send('Embarrassing Slack Bot');
+});
+
 app.post('/', (req, res) => {
   let text = req.body.text;
   console.log(text);
