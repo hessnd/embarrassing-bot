@@ -1,2 +1,2 @@
 # embarrassing-bot
-testing a slack bot that serves a embarrassing picture of friends
+testing a slack bot that serves embarrassing pictures of friends
