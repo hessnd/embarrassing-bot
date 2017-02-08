@@ -44,27 +44,12 @@ app.post('/', (req, res) => {
   data = {
     response_type: 'in_channel', // public to channel
     text: 'look at ' + text,
-    attachments: [],
+    attachments: [
+        {
+          'image_url': 'https://embarrassing-bot.herokuapp.com/images/' + text + '.JPEG',
+        }
+      ]
   };
-  
-  if (text == 'jack') {
-    data.attachments = [
-        {
-          'image_url': 'https://embarrassing-bot.herokuapp.com/images/jack.JPEG',
-        }
-      ]
-  } else if (text == 'dlen') {
-    data.attachments = [
-        {
-          'image_url': 'https://embarrassing-bot.herokuapp.com/images/dlen.JPEG',
-        }
-      ]
-  } else {
-    data = {
-      response_type: 'in_channel',
-      text: 'sorry bromigo, no pics yet',
-    };
-  }
 
   res.json(data);
 });
