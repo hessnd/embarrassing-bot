@@ -40,17 +40,25 @@ app.post('/', (req, res) => {
   if (req.body.token !== VERIFY_TOKEN) {
     return res.sendStatus(401);
   }
+
+  data = {
+    response_type: 'in_channel', // public to channel
+    text: 'look at ' + text,
+    attachments: [],
+  };
   
-  if (text == 'frosh') {
-    data = {
-      response_type: 'in_channel', // public to channel
-      text: 'look at ' + text,
-      attachments: [
+  if (text == 'jack') {
+    data.attachments: [
         {
-          'image_url': 'https://embarrassing-bot.herokuapp.com/images/frosh.JPEG',
+          'image_url': 'https://embarrassing-bot.herokuapp.com/images/jack.JPEG',
         }
       ]
-    };
+  } else if (text == 'dlen') {
+    data.attachments: [
+        {
+          'image_url': 'https://embarrassing-bot.herokuapp.com/images/dlen.JPEG',
+        }
+      ]
   } else {
     data = {
       response_type: 'in_channel',
