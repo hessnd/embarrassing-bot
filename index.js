@@ -48,13 +48,13 @@ app.post('/', (req, res) => {
   };
   
   if (text == 'jack') {
-    data.attachments: [
+    data.attachments = [
         {
           'image_url': 'https://embarrassing-bot.herokuapp.com/images/jack.JPEG',
         }
       ]
   } else if (text == 'dlen') {
-    data.attachments: [
+    data.attachments = [
         {
           'image_url': 'https://embarrassing-bot.herokuapp.com/images/dlen.JPEG',
         }
