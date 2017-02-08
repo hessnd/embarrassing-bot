@@ -5,7 +5,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const server = app.listen(3000, () => {
+const VERIFY_TOKEN = process.env.SLACK_VERIFY_TOKEN;
+if (!VERIFY_TOKEN) {
+  console.error('SLACK_VERIFY_TOKEN is required');
+}
+
+const server = app.listen(3000, (err) => {
+  if (err) {
+    return console.error('Error starting server: ', err);
+  }
+
   console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
 });
 
@@ -17,8 +26,11 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   let text = req.body.text;
-  console.log(text);
   let data;
+
+  if (req.body.token !== VERIFY_TOKEN) {
+    return res.sendStatus(401);
+  }
   
   if (text == 'frosh') {
     data = {
@@ -26,7 +38,7 @@ app.post('/', (req, res) => {
       text: 'look at ' + text,
       attachments: [
         {
-          'image_url': 'http://9c0b4c7c.ngrok.io/images/frosh.JPEG',
+          'image_url': 'http://08242dbf.ngrok.io/images/frosh.JPEG',
         }
       ]
     };
