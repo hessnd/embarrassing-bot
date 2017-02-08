@@ -6,11 +6,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const VERIFY_TOKEN = process.env.SLACK_VERIFY_TOKEN;
+const PORT = process.env.PORT;
+
 if (!VERIFY_TOKEN) {
   console.error('SLACK_VERIFY_TOKEN is required');
 }
 
-const server = app.listen(3000, (err) => {
+if (!PORT) {
+  console.error('PORT is required');
+  process.exit(1);
+}
+
+const server = app.listen(PORT, (err) => {
   if (err) {
     return console.error('Error starting server: ', err);
   }
