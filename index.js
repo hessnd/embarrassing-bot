@@ -45,7 +45,7 @@ app.post('/', (req, res) => {
       text: 'look at ' + text,
       attachments: [
         {
-          'image_url': 'http://08242dbf.ngrok.io/images/frosh.JPEG',
+          'image_url': 'https://embarrassing-bot.herokuapp.com/images/frosh.JPEG',
         }
       ]
     };
